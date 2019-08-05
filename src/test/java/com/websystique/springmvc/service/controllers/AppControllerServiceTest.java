@@ -49,7 +49,7 @@ public class AppControllerServiceTest {
     public void testFindAllUsers() {
         System.out.println("findAllUsers");
         AppControllerService instance = new AppControllerService();
-        List<User> expResult = null;
+        List<User> expResult = instance.findAllUsers();
         List<User> result = instance.findAllUsers();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
@@ -60,13 +60,27 @@ public class AppControllerServiceTest {
      * Test of modelAddAttribute method, of class AppControllerService.
      */
     @Test
-    public void testModelAddAttribute() {
+    public void testModelAddAttribute_Users() {
         System.out.println("modelAddAttribute");
-        ModelMap model = null;
+        ModelMap model = new ModelMap();
         String name = "";
-        Object o = null;
+        Object o = instance.findAllUsers();
         AppControllerService instance = new AppControllerService();
-        ModelMap expResult = null;
+        ModelMap expResult = instance.modelAddAttribute(model, name, o);
+        ModelMap result = instance.modelAddAttribute(model, name, o);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+
+    @Test
+    public void testModelAddAttribute_Principal() {
+        System.out.println("modelAddAttribute");
+        ModelMap model = new ModelMap();
+        String name = "";
+        Object o = this.testGetPrincipal();
+        AppControllerService instance = new AppControllerService();
+        ModelMap expResult = instance.modelAddAttribute(model, name, o);
         ModelMap result = instance.modelAddAttribute(model, name, o);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
